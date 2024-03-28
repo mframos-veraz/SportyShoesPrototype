@@ -1,0 +1,13 @@
+package com.vodafone.deal.SportyShoesPrototype;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class SportyShoesPrototypeApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
