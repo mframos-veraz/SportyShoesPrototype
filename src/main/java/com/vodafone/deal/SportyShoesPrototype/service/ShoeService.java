@@ -37,9 +37,9 @@ public class ShoeService {
     }
 
     public String editShoe(Shoe shoe) {
-        Optional<Shoe> product = repository.findById(shoe.getId());
-        if (product.isPresent()) {
-            Shoe shoeRecord = product.get();
+        Optional<Shoe> record = repository.findById(shoe.getId());
+        if (record.isPresent()) {
+            Shoe shoeRecord = record.get();
             shoeRecord.setDescription(shoe.getDescription());
             shoeRecord.setMaterial(shoe.getMaterial());
             shoeRecord.setName(shoe.getName());
