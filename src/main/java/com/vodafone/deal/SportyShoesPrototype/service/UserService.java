@@ -15,8 +15,8 @@ public class UserService {
     private UserRepository repository;
 
     public String createUser(User user) {
-        Optional<User> result = repository.findByName(user.getName());
-        if (result.isPresent()) {
+        Optional<User> record = repository.findByName(user.getName());
+        if (record.isPresent()) {
             return "User already registered";
         }
         repository.save(user);
@@ -24,8 +24,8 @@ public class UserService {
     }
 
     public String deleteUser(int id) {
-        Optional<User> result = repository.findById(id);
-        if (result.isPresent()) {
+        Optional<User> record = repository.findById(id);
+        if (record.isPresent()) {
             repository.deleteById(id);
             return "User deleted";
         }
