@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface ShoeRepository extends JpaRepository<Shoe, Integer> {
 
     @Query("select shoe from Shoe shoe where shoe.name = :name")
-    public Optional<Shoe> findByName(String name);
+    Optional<Shoe> findByName(String name);
 }
