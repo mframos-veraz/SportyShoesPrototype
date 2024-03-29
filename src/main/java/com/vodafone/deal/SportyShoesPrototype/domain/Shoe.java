@@ -2,6 +2,8 @@ package com.vodafone.deal.SportyShoesPrototype.domain;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "products")
 public class Shoe {
@@ -15,8 +17,19 @@ public class Shoe {
     private float size;
     private String material;
     private String description;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "productId")
+    private List<Order> orders;
 
     public Shoe() {
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     public int getId() {
