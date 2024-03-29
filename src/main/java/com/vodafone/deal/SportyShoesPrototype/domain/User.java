@@ -1,13 +1,9 @@
 package com.vodafone.deal.SportyShoesPrototype.domain;
 
 import jakarta.persistence.*;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "users")
-@Component
-@Scope("prototype")
 public class User {
 
     @Id
