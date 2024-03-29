@@ -15,8 +15,8 @@ public class ShoeService {
     private ShoeRepository repository;
 
     public String createShoe(Shoe shoe) {
-        Optional<Shoe> product = repository.findByName(shoe.getName());
-        if (product.isPresent()) {
+        Optional<Shoe> record = repository.findByName(shoe.getName());
+        if (record.isPresent()) {
             return "Cannot create two products with the same name";
         }
         repository.save(shoe);
@@ -24,17 +24,15 @@ public class ShoeService {
     }
 
     public String deleteShoe(int id) {
-        Optional<Shoe> product = repository.findById(id);
-        if (product.isPresent()) {
+        Optional<Shoe> record = repository.findById(id);
+        if (record.isPresent()) {
             repository.deleteById(id);
             return "Product deleted";
         }
         return "No product found";
     }
 
-    public List<Shoe> getAllShoes() {
-        return repository.findAll();
-    }
+    public List<Shoe> getAllShoes() { return repository.findAll(); }
 
     public String editShoe(Shoe shoe) {
         Optional<Shoe> record = repository.findById(shoe.getId());
