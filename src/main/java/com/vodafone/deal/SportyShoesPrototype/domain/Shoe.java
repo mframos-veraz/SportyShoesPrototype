@@ -1,12 +1,16 @@
 package com.vodafone.deal.SportyShoesPrototype.domain;
 
 import jakarta.persistence.*;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "products")
+@Component
+@Scope("prototype")
 public class Shoe {
 
     @Id
