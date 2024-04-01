@@ -24,12 +24,12 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(Login login) {
+    public String login(Model model, Login login) {
 
         User user = service.getUserByEmail(login.getUsername());
-        if (user == null) {
-
-            System.out.println("null");
+        if (user == null || !user.getPassword().equals(login.getPassword())) {
+            model.addAttribute("message", "Wrong username or password.");
+            model.addAttribute("login", login);
             return "login";
         }
 
@@ -39,8 +39,9 @@ public class LoginController {
             case "customer":
                 return "customer";
             default:
-                return "login"; //TODO: Add custom error.
-
+                model.addAttribute("message", "Invalid user type.");
+                model.addAttribute("login", login);
+                return "login";
         }
     }
 
