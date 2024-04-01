@@ -47,4 +47,9 @@ public class UserService {
         }
         return "User does not exist";
     }
+
+    public User getUserByEmail(String email) {
+        Optional<User> user = repository.findByEmail(email);
+        return user.orElse(null);
+    }
 }
