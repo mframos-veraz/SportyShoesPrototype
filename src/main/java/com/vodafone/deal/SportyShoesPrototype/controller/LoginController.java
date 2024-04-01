@@ -39,15 +39,18 @@ public class LoginController {
             return "login";
         }
 
+        List<Shoe> products = productService.getAllShoes();
+        model.addAttribute("products", products);
+
         switch (user.getType()) {
             case "admin":
+                List<User> users = userService.getAllUsers();
+                model.addAttribute("users", users);
+
                 return "admin";
             case "customer":
                 List<Order> orders = user.getOrdersList();
                 model.addAttribute("orders", orders);
-
-                List<Shoe> products = productService.getAllShoes();
-                model.addAttribute("products", products);
 
                 model.addAttribute("user", user);
                 return "customer";

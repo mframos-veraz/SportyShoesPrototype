@@ -1,12 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Administrator</title>
+    <title>Sporty Shoes Management</title>
 </head>
 <body>
+<h1>Sporty Shoes Management</h1>
 <div>
-    <h1>Welcome Admin!</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Type</th>
+        </tr>
+        <tr th:each="user:${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.type}"></td>
+        </tr>
+    </table>
+</div>
+<hr/>
+<div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Size</th>
+            <th>Material</th>
+            <th>Description</th>
+        </tr>
+        <tr th:each="shoe:${products}">
+            <td th:text="${shoe.id}"></td>
+            <td th:text="${shoe.name}"></td>
+            <td th:text="${shoe.price}"></td>
+            <td th:text="${shoe.stock}"></td>
+            <td th:text="${shoe.size}"></td>
+            <td th:text="${shoe.material}"></td>
+            <td th:text="${shoe.description}"></td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>
