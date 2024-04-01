@@ -23,7 +23,7 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(Model model, Login login) {
 
         User user = service.getUserByEmail(login.getUsername());
@@ -45,5 +45,21 @@ public class LoginController {
         }
     }
 
+    @RequestMapping(value = "newUser", method = RequestMethod.GET)
+    public String newUser(Model model, User user) {
 
+        model.addAttribute("user", user);
+        return "newUser";
+    }
+
+    @RequestMapping(value = "createUser", method = RequestMethod.POST)
+    public String createUser(Model model, User user, Login login) {
+
+        user.setType("customer");
+        service.createUser(user);
+
+        model.addAttribute("message", "User registered!");
+        model.addAttribute("login", login);
+        return "login";
+    }
 }

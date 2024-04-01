@@ -9,7 +9,7 @@
 <div>
     <span th:text="${message}"></span>
     <form action="#" method="post" th:action="@{/login}" th:object="${login}">
-        <label> Username
+        <label>Username
             <input name="username" th:field="*{username}" type="email">
         </label><br>
         <label>Password
@@ -17,6 +17,11 @@
         </label><br>
         <input name="submitButton" value="Login" type="submit">
         <input name="reset" value="Reset" type="reset">
+    </form><br>
+    <form action="#" method="get" th:action="@{/newUser}">
+        <label>Create User
+            <input name="newUser" value="New User" type="submit">
+        </label>
     </form>
 </div>
 </body>
