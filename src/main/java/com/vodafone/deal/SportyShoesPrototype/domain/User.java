@@ -2,6 +2,8 @@ package com.vodafone.deal.SportyShoesPrototype.domain;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -13,6 +15,18 @@ public class User {
     private String email;
     private String password;
     private String type;            // admin or customer
+    @Column(name = "orders")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userId")
+    private List<Order> ordersList;
+
+    public List<Order> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<Order> ordersList) {
+        this.ordersList = ordersList;
+    }
 
     public User() {
     }

@@ -17,6 +17,7 @@ public class OrderService {
 
     public String createOrder(Order order) {
         Order record = new Order(
+                order.getUserId(),
                 order.getProductId(),
                 LocalDateTime.now());
         repository.save(record);

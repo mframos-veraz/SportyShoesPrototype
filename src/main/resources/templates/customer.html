@@ -7,7 +7,41 @@
 <body>
 <h1>Welcome to Sporty Shoes!</h1>
 <div>
-
+    <table name="Your orders">
+        <tr>
+            <th>Order ID</th>
+            <th>Product ID</th>
+            <th>Date of purchase</th>
+        </tr>
+        <tr th:each="order:${orders}">
+            <td th:text="${order.id}"></td>
+            <td th:text="${order.productId}"></td>
+            <td th:text="${order.date}"></td>
+        </tr>
+    </table>
+</div>
+<hr/>
+<div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Size</th>
+            <th>Material</th>
+            <th>Description</th>
+        </tr>
+        <tr th:each="shoe:${products}">
+            <td th:text="${shoe.id}"></td>
+            <td th:text="${shoe.name}"></td>
+            <td th:text="${shoe.price}"></td>
+            <td th:text="${shoe.stock}"></td>
+            <td th:text="${shoe.size}"></td>
+            <td th:text="${shoe.material}"></td>
+            <td th:text="${shoe.description}"></td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

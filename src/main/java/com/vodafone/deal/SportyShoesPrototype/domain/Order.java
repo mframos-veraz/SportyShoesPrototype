@@ -12,15 +12,25 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int productId;
+    private int userId;
     @Column(name = "purchase date")
     private LocalDateTime date;
 
-    public Order() {
+    public Order(int productId, int userId, LocalDateTime date) {
+        this.productId = productId;
+        this.userId = userId;
+        this.date = date;
     }
 
-    public Order(int productId, LocalDateTime date) {
-        this.productId = productId;
-        this.date = date;
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public Order() {
     }
 
     public int getId() {
