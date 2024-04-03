@@ -7,7 +7,7 @@
 <body>
 <h1>Create a new user!</h1>
 <div>
-    <form action="#" method="post" th:action="@{/createUser}" th:object="${user}">
+    <form action="#" method="post" th:action="@{/login/newUser}" th:object="${user}">
         <label>Name
             <input name="name" th:field="*{name}" type="text">
         </label><br>

@@ -11,10 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("login")
 public class LoginController {
 
     @Autowired
@@ -29,7 +31,7 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("login")
+    @PostMapping
     public String login(Model model, Login login) {
 
         User user = userService.getUserByEmail(login.getUsername());
@@ -47,6 +49,7 @@ public class LoginController {
                 List<User> users = userService.getAllUsers();
                 model.addAttribute("users", users);
 
+                model.addAttribute("user", user);
                 return "admin";
             case "customer":
                 List<Order> orders = user.getOrdersList();
@@ -68,7 +71,7 @@ public class LoginController {
         return "newUser";
     }
 
-    @PostMapping("createUser")
+    @PostMapping("newUser")
     public String createUser(Model model, User user, Login login) {
 
         user.setType("customer");

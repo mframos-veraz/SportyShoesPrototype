@@ -7,6 +7,49 @@
 <body>
 <h1>Sporty Shoes Management</h1>
 <div>
+    <span th:text="${message}"></span>
+    <form action="#" method="post" th:action="@{/admin/createUser}" th:object="${user}">
+        <label>Name
+            <input name="name" th:field="*{name}" type="text">
+        </label><br>
+        <label>Password
+            <input name="password" th:field="*{password}" type="password">
+        </label><br>
+        <label>Email
+            <input name="email" th:field="*{email}" type="email">
+        </label><br>
+        <label>Type
+            <input name="type" th:field="*{type}" type="text">
+        </label><br>
+        <input name="submitButton" value="Create new user" type="submit">
+        <input name="reset" value="Reset" type="reset">
+    </form>
+    <form action="#" method="post" th:action="@{/admin/editUser}" th:object="${user}">
+        <label>User ID
+            <input name="userId" th:field="*{id}" type="number">
+        </label><br>
+        <label>Name
+            <input name="name" th:field="*{name}" type="text">
+        </label><br>
+        <label>Password
+            <input name="password" th:field="*{password}" type="password">
+        </label><br>
+        <label>Email
+            <input name="email" th:field="*{email}" type="email">
+        </label><br>
+        <label>Type
+            <input name="type" th:field="*{type}" type="text">
+        </label><br>
+        <input name="submitButton" value="Modify user" type="submit">
+        <input name="reset" value="Reset" type="reset">
+    </form>
+    <form action="#" method="post" th:action="@{/admin/deleteUser}" th:object="${user}">
+        <label>User ID
+            <input name="userId" th:field="*{id}" type="number">
+        </label><br>
+        <input name="submitButton" value="Delete user" type="submit">
+        <input name="reset" value="Reset" type="reset">
+    </form>
     <table>
         <tr>
             <th>ID</th>

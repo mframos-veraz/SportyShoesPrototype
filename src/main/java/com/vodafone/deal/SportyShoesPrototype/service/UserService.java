@@ -15,7 +15,7 @@ public class UserService {
     private UserRepository repository;
 
     public String createUser(User user) {
-        Optional<User> record = repository.findByName(user.getName());
+        Optional<User> record = repository.findByEmail(user.getEmail());
         if (record.isPresent()) {
             return "User already registered";
         }
@@ -50,6 +50,11 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         Optional<User> user = repository.findByEmail(email);
+        return user.orElse(null);
+    }
+
+    public User getUserById(int id) {
+        Optional<User> user = repository.findById(id);
         return user.orElse(null);
     }
 }

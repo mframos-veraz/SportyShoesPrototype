@@ -2,10 +2,12 @@ package com.vodafone.deal.SportyShoesPrototype.controller;
 
 import com.vodafone.deal.SportyShoesPrototype.domain.Shoe;
 import com.vodafone.deal.SportyShoesPrototype.domain.User;
+import com.vodafone.deal.SportyShoesPrototype.service.ShoeService;
+import com.vodafone.deal.SportyShoesPrototype.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,10 +15,55 @@ import java.util.List;
 @RequestMapping("admin")
 public class AdminController {
 
-    @GetMapping
-    public String index(Model model, List<User> users, List<Shoe> products) {
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private ShoeService productService;
 
+    @GetMapping
+    public String index(Model model, List<User> users, List<Shoe> products, User user) {
+
+        model.addAttribute("user", user);
         model.addAttribute("users", users);
+        model.addAttribute("products", products);
+        return "admin";
+    }
+
+    @PostMapping("createUser")
+    public String createUser(Model model, User user) {
+
+        String message = userService.createUser(user);
+        model.addAttribute("message", message);
+
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        List<Shoe> products = productService.getAllShoes();
+        model.addAttribute("products", products);
+        return "admin";
+    }
+
+    @PostMapping("editUser")
+    public String editUser(Model model, User user) {
+
+        String message = userService.editUser(user);
+        model.addAttribute("message", message);
+
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        List<Shoe> products = productService.getAllShoes();
+        model.addAttribute("products", products);
+        return "admin";
+    }
+
+    @PostMapping("deleteUser")
+    public String deleteUser(Model model, User user) {
+
+        String message = userService.deleteUser(user.getId());
+        model.addAttribute("message", message);
+
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        List<Shoe> products = productService.getAllShoes();
         model.addAttribute("products", products);
         return "admin";
     }
