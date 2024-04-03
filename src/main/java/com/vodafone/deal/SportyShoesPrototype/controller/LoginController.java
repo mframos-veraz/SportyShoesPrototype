@@ -49,7 +49,8 @@ public class LoginController {
                 List<User> users = userService.getAllUsers();
                 model.addAttribute("users", users);
 
-                model.addAttribute("user", user);
+                model.addAttribute("product", new Shoe());
+                model.addAttribute("user", new User());
                 return "admin";
             case "customer":
                 List<Order> orders = user.getOrdersList();
