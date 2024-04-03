@@ -57,6 +57,8 @@ public class LoginController {
                 model.addAttribute("orders", orders);
 
                 model.addAttribute("user", user);
+                model.addAttribute("order", new Order());
+                model.addAttribute("product", new Shoe());
                 return "customer";
             default:
                 model.addAttribute("message", "Invalid user type.");

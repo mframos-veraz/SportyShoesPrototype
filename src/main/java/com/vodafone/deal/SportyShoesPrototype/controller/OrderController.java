@@ -1,6 +1,7 @@
 package com.vodafone.deal.SportyShoesPrototype.controller;
 
 import com.vodafone.deal.SportyShoesPrototype.domain.Order;
+import com.vodafone.deal.SportyShoesPrototype.domain.Shoe;
 import com.vodafone.deal.SportyShoesPrototype.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +20,8 @@ public class OrderController {
 
     @PostMapping(value = "new",
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> createOrder(@RequestBody Order order) {
-        String result = service.createOrder(order);
+    public ResponseEntity<String> createOrder(@RequestBody Shoe shoe, @RequestParam int userId) {
+        String result = service.createOrder(shoe, userId);
         return ResponseEntity.status(HttpStatus.CREATED).body(result.toString());
     }
 

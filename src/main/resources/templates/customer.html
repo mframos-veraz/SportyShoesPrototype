@@ -7,6 +7,14 @@
 <body>
 <h1>Welcome to Sporty Shoes!</h1>
 <div>
+    <span th:text="${message}"></span>
+    <form action="#" method="post" th:action="@{/customer/deleteOrder}" th:object="${order}">
+        <label>Order ID
+            <input name="orderId" th:field="*{id}" type="number">
+        </label><br>
+        <input name="submitButton" value="Delete order" type="submit">
+        <input name="reset" value="Reset" type="reset">
+    </form>
     <table name="Your orders">
         <tr>
             <th>Order ID</th>
@@ -22,6 +30,13 @@
 </div>
 <hr/>
 <div>
+    <form action="#" method="post" th:action="@{/customer/orderProduct}" th:object="${product}">
+        <label>Product ID
+            <input name="product" th:field="*{id}" type="number">
+        </label><br>
+        <input name="submitButton" value="Order product" type="submit">
+        <input name="reset" value="Reset" type="reset">
+    </form>
     <table>
         <tr>
             <th>ID</th>
