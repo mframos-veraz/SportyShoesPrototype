@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sporty Shoes Management</title>
+</head>
+<body>
+<div>
+    <form action="#" method="post" th:action="@{/admin/createProduct}" th:object="${product}">
+        <label>Name
+            <input name="name" th:field="*{name}" type="text">
+        </label><br>
+        <label>Price
+            <input name="price" th:field="*{price}" type="number">
+        </label><br>
+        <label>Stock
+            <input name="stock" th:field="*{stock}" type="text">
+        </label><br>
+        <label>Size
+            <input name="size" th:field="*{size}" type="number">
+        </label><br>
+        <label>Material
+            <input name="material" th:field="*{material}" type="text">
+        </label><br>
+        <label>Description
+            <input name="description" th:field="*{description}" type="text">
+        </label><br>
+        <input name="submitButton" value="Create new product" type="submit">
+        <input name="reset" value="Reset" type="reset">
+    </form>
+    <form action="#" method="post" th:action="@{/admin/editProduct}" th:object="${product}">
+        <label>Product ID
+            <input name="productId" th:field="*{id}" type="number">
+        </label><br>
+        <label>Name
+            <input name="name" th:field="*{name}" type="text">
+        </label><br>
+        <label>Price
+            <input name="price" th:field="*{price}" type="number">
+        </label><br>
+        <label>Stock
+            <input name="stock" th:field="*{stock}" type="text">
+        </label><br>
+        <label>Size
+            <input name="size" th:field="*{size}" type="number">
+        </label><br>
+        <label>Material
+            <input name="material" th:field="*{material}" type="text">
+        </label><br>
+        <label>Description
+            <input name="description" th:field="*{description}" type="text">
+        </label><br>
+        <input name="submitButton" value="Modify product" type="submit">
+        <input name="reset" value="Reset" type="reset">
+    </form>
+    <form action="#" method="post" th:action="@{/admin/deleteProduct}" th:object="${product}">
+        <label>Product ID
+            <input name="productId" th:field="*{id}" type="number">
+        </label><br>
+        <input name="submitButton" value="Delete product" type="submit">
+        <input name="reset" value="Reset" type="reset">
+    </form>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Size</th>
+            <th>Material</th>
+            <th>Description</th>
+        </tr>
+        <tr th:each="shoe:${products}">
+            <td th:text="${shoe.id}"></td>
+            <td th:text="${shoe.name}"></td>
+            <td th:text="${shoe.price}"></td>
+            <td th:text="${shoe.stock}"></td>
+            <td th:text="${shoe.size}"></td>
+            <td th:text="${shoe.material}"></td>
+            <td th:text="${shoe.description}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

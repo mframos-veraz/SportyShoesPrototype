@@ -33,10 +33,11 @@ public class SecurityConfiguration {
                     authorization.requestMatchers("/login/*", "/logout").permitAll();
                     authorization.requestMatchers("/person/*").permitAll();
                     authorization.requestMatchers("/customer", "/customer/*").hasRole("USER");
-                    authorization.requestMatchers("/admin", "/admin/*").hasRole("ADMIN");
+                    authorization.requestMatchers("/admin", "/admin/*", "/adminPerson", "/adminProduct").hasRole("ADMIN");
                 })
         ;
         return security.build();
+
     }
 
     @Bean

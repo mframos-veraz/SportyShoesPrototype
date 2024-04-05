@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sporty Shoes Management</title>
+</head>
+<body>
+<div>
+    <form action="#" method="post" th:action="@{/admin/createPerson}" th:object="${person}">
+        <label>First Name
+            <input name="firstName" th:field="*{firstName}" type="text">
+        </label><br>
+        <label>Last Name
+            <input name="lastName" th:field="*{lastName}" type="text">
+        </label><br>
+        <label>Email
+            <input name="email" th:field="*{login.username}" type="email">
+        </label><br>
+        <label>Password
+            <input name="password" th:field="*{login.password}" type="password">
+        </label><br>
+        <label>USER
+            <input name="USER" value="USER" th:field="*{login.role}" type="radio">
+        </label>
+        <label>ADMIN
+            <input name="ADMIN" value="ADMIN" th:field="*{login.role}" type="radio">
+        </label><br>
+        <input name="submitButton" value="Create new user" type="submit">
+        <input name="reset" value="Reset" type="reset">
+    </form>
+    <form action="#" method="post" th:action="@{/admin/editPerson}" th:object="${person}">
+        <label>User ID
+            <input name="userId" th:field="*{id}" type="number">
+        </label><br>
+        <label>First Name
+            <input name="firstName" th:field="*{firstName}" type="text">
+        </label><br>
+        <label>Last Name
+            <input name="lastName" th:field="*{lastName}" type="text">
+        </label><br>
+        <label>Email
+            <input name="email" th:field="*{login.username}" type="email">
+        </label><br>
+        <label>Password
+            <input name="password" th:field="*{login.password}" type="password">
+        </label><br>
+        <label>USER
+            <input name="USER" value="USER" th:field="*{login.role}" type="radio">
+        </label>
+        <label>ADMIN
+            <input name="ADMIN" value="ADMIN" th:field="*{login.role}" type="radio">
+        </label><br>
+        <input name="submitButton" value="Modify user" type="submit">
+        <input name="reset" value="Reset" type="reset">
+    </form>
+    <form action="#" method="post" th:action="@{/admin/deletePerson}" th:object="${person}">
+        <label>User ID
+            <input name="userId" th:field="*{id}" type="number">
+        </label><br>
+        <input name="submitButton" value="Delete user" type="submit">
+        <input name="reset" value="Reset" type="reset">
+    </form>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Role</th>
+        </tr>
+        <tr th:each="person:${persons}">
+            <td th:text="${person.id}"></td>
+            <td th:text="${person.firstName}"></td>
+            <td th:text="${person.lastName}"></td>
+            <td th:text="${person.login.username}"></td>
+            <td th:text="${person.login.password}"></td>
+            <td th:text="${person.login.role}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
