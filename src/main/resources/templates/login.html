@@ -5,24 +5,22 @@
     <title>Sporty Shoes</title>
 </head>
 <body>
-<h1>Welcome to Sporty Shoes!</h1>
-<div>
-    <span th:text="${message}"></span>
-    <form action="#" method="post" th:action="@{/login}" th:object="${login}">
-        <label>Username
-            <input name="username" th:field="*{username}" type="email">
-        </label><br>
-        <label>Password
-            <input name="password" th:field="*{password}" type="password">
-        </label><br>
-        <input name="submitButton" value="Login" type="submit">
-        <input name="reset" value="Reset" type="reset">
-    </form><br>
-    <form action="#" method="get" th:action="@{/login/newUser}">
-        <label>Create User
-            <input name="newUser" value="New User" type="submit">
-        </label>
-    </form>
+<h1>Sporty Shoes</h1>
+<h2>Please Log In</h2>
+<div th:if="${param.error}">
+    Invalid username and password.
 </div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+<form th:action="@{/login}" method="post">
+    <div>
+        <input type="text" name="username" placeholder="Username"/>
+    </div>
+    <div>
+        <input type="password" name="password" placeholder="Password"/>
+    </div>
+    <input type="submit" value="Log in"/>
+</form>
 </body>
 </html>

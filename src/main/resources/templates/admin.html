@@ -10,13 +10,13 @@
     <span th:text="${message}"></span>
     <form action="#" method="post" th:action="@{/admin/createUser}" th:object="${user}">
         <label>Name
-            <input name="name" th:field="*{name}" type="text">
+            <input name="name" th:field="*{firstName}" type="text">
         </label><br>
         <label>Password
             <input name="password" th:field="*{password}" type="password">
         </label><br>
         <label>Email
-            <input name="email" th:field="*{email}" type="email">
+            <input name="email" th:field="*{login}" type="email">
         </label><br>
         <label>Type
             <input name="type" th:field="*{type}" type="text">
@@ -29,13 +29,13 @@
             <input name="userId" th:field="*{id}" type="number">
         </label><br>
         <label>Name
-            <input name="name" th:field="*{name}" type="text">
+            <input name="name" th:field="*{firstName}" type="text">
         </label><br>
         <label>Password
             <input name="password" th:field="*{password}" type="password">
         </label><br>
         <label>Email
-            <input name="email" th:field="*{email}" type="email">
+            <input name="email" th:field="*{login}" type="email">
         </label><br>
         <label>Type
             <input name="type" th:field="*{type}" type="text">

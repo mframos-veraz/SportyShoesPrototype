@@ -8,14 +8,17 @@
 <h1>Create a new user!</h1>
 <div>
     <form action="#" method="post" th:action="@{/login/newUser}" th:object="${user}">
-        <label>Name
-            <input name="name" th:field="*{name}" type="text">
+        <label>First Name
+            <input name="name" th:field="*{firstName}" type="text">
+        </label><br>
+        <label>Last Name
+            <input name="name" th:field="*{lastName}" type="text">
         </label><br>
         <label>Email
-            <input name="email" th:field="*{email}" type="email">
+            <input name="email" th:field="*{login.username}" type="email">
         </label><br>
         <label>Password
-            <input name="password" th:field="*{password}" type="password">
+            <input name="password" th:field="*{login.password}" type="password">
         </label><br>
         <input name="createNewUser" value="Register" type="submit">
     </form>

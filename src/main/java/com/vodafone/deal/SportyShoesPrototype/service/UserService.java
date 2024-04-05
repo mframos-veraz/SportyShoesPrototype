@@ -1,8 +1,10 @@
 package com.vodafone.deal.SportyShoesPrototype.service;
 
+import com.vodafone.deal.SportyShoesPrototype.domain.Login;
 import com.vodafone.deal.SportyShoesPrototype.domain.User;
 import com.vodafone.deal.SportyShoesPrototype.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,12 +15,20 @@ public class UserService {
 
     @Autowired
     private UserRepository repository;
+    @Autowired
+    private LoginService loginService;
+    @Autowired
+    private PasswordEncoder encoder;
 
     public String createUser(User user) {
-        Optional<User> record = repository.findByEmail(user.getEmail());
+        Optional<User> record = repository.findByEmail(user.getLogin().getUsername());
         if (record.isPresent()) {
             return "User already registered";
         }
+
+        user.getLogin().setPassword(encoder.encode(user.getLogin().getPassword()));
+        loginService.createLogin(user.getLogin());
+
         repository.save(user);
         return "User created successfully";
     }
@@ -38,10 +48,7 @@ public class UserService {
         Optional<User> record = repository.findById(user.getId());
         if (record.isPresent()) {
             User userRecord = record.get();
-            userRecord.setEmail(user.getEmail());
-            userRecord.setName(user.getName());
-            userRecord.setType(user.getType());
-            userRecord.setPassword(user.getPassword());
+            userRecord.setFirstName(user.getFirstName());
             repository.saveAndFlush(userRecord);
             return "User edited";
         }
@@ -56,5 +63,9 @@ public class UserService {
     public User getUserById(int id) {
         Optional<User> user = repository.findById(id);
         return user.orElse(null);
+    }
+
+    public Integer getUserIdByEmail(String email) {
+        return repository.findIdByEmail(email);
     }
 }

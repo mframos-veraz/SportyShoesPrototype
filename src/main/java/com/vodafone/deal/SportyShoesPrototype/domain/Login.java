@@ -1,19 +1,35 @@
 package com.vodafone.deal.SportyShoesPrototype.domain;
 
-import org.springframework.stereotype.Component;
+import jakarta.persistence.*;
 
-@Component
+@Entity
 public class Login {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(unique = true)
     private String username;
     private String password;
+    private String role;
 
     public Login() {
     }
 
-    public Login(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String roles) {
+        this.role = roles;
     }
 
     public String getUsername() {

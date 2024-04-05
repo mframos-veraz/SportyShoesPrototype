@@ -11,22 +11,15 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    private String email;
-    private String password;
-    private String type;            // admin or customer
+    private String firstName;
+    private String lastName;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "loginId")
+    private Login login;
     @Column(name = "orders")
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "userId")
     private List<Order> ordersList;
-
-    public List<Order> getOrdersList() {
-        return ordersList;
-    }
-
-    public void setOrdersList(List<Order> ordersList) {
-        this.ordersList = ordersList;
-    }
 
     public User() {
     }
@@ -39,35 +32,37 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String name) {
+        this.firstName = name;
     }
 
-    public String getEmail() {
-        return email;
+    public Login getLogin() {
+        return login;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLogin(Login email) {
+        this.login = email;
     }
 
-    public String getPassword() {
-        return password;
+    public List<Order> getOrdersList() {
+        return ordersList;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setOrdersList(List<Order> ordersList) {
+        this.ordersList = ordersList;
     }
 
-    public String getType() {
-        return type;
+    public void setRole(String role) { this.login.setRole(role);}
+
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
