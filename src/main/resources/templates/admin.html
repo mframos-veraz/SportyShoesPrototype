@@ -8,7 +8,7 @@
 <h1>Sporty Shoes Management</h1>
 <div>
     <span th:text="${message}"></span>
-    <form action="#" method="post" th:action="@{/admin/createUser}" th:object="${user}">
+    <form action="#" method="post" th:action="@{/admin/createUser}" th:object="${person}">
         <label>Name
             <input name="name" th:field="*{firstName}" type="text">
         </label><br>
@@ -24,7 +24,7 @@
         <input name="submitButton" value="Create new user" type="submit">
         <input name="reset" value="Reset" type="reset">
     </form>
-    <form action="#" method="post" th:action="@{/admin/editUser}" th:object="${user}">
+    <form action="#" method="post" th:action="@{/admin/editUser}" th:object="${person}">
         <label>User ID
             <input name="userId" th:field="*{id}" type="number">
         </label><br>
@@ -40,10 +40,10 @@
         <label>Type
             <input name="type" th:field="*{type}" type="text">
         </label><br>
-        <input name="submitButton" value="Modify user" type="submit">
+        <input name="submitButton" value="Modify person" type="submit">
         <input name="reset" value="Reset" type="reset">
     </form>
-    <form action="#" method="post" th:action="@{/admin/deleteUser}" th:object="${user}">
+    <form action="#" method="post" th:action="@{/admin/deleteUser}" th:object="${person}">
         <label>User ID
             <input name="userId" th:field="*{id}" type="number">
         </label><br>
@@ -58,12 +58,12 @@
             <th>Password</th>
             <th>Type</th>
         </tr>
-        <tr th:each="user:${users}">
-            <td th:text="${user.id}"></td>
-            <td th:text="${user.name}"></td>
-            <td th:text="${user.email}"></td>
-            <td th:text="${user.password}"></td>
-            <td th:text="${user.type}"></td>
+        <tr th:each="person:${users}">
+            <td th:text="${person.id}"></td>
+            <td th:text="${person.name}"></td>
+            <td th:text="${person.email}"></td>
+            <td th:text="${person.password}"></td>
+            <td th:text="${person.type}"></td>
         </tr>
     </table>
 </div>
@@ -116,7 +116,7 @@
         <input name="submitButton" value="Modify product" type="submit">
         <input name="reset" value="Reset" type="reset">
     </form>
-    <form action="#" method="post" th:action="@{/admin/deleteProduct}" th:object="${user}">
+    <form action="#" method="post" th:action="@{/admin/deleteProduct}" th:object="${person}">
         <label>Product ID
             <input name="productId" th:field="*{id}" type="number">
         </label><br>

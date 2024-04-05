@@ -4,7 +4,7 @@ import com.vodafone.deal.SportyShoesPrototype.domain.Order;
 import com.vodafone.deal.SportyShoesPrototype.domain.Shoe;
 import com.vodafone.deal.SportyShoesPrototype.repository.OrderRepository;
 import com.vodafone.deal.SportyShoesPrototype.repository.ShoeRepository;
-import com.vodafone.deal.SportyShoesPrototype.repository.UserRepository;
+import com.vodafone.deal.SportyShoesPrototype.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,13 +18,13 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
     @Autowired
-    private UserRepository userRepository;
+    private PersonRepository personRepository;
     @Autowired
     private ShoeRepository productRepository;
 
     public String createOrder(Shoe product, int userId) {
 
-        if (userRepository.findById(userId).isEmpty()) {
+        if (personRepository.findById(userId).isEmpty()) {
             return "User does not exist";
         }
 

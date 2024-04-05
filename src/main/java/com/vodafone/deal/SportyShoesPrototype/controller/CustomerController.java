@@ -1,20 +1,17 @@
 package com.vodafone.deal.SportyShoesPrototype.controller;
 
-import com.vodafone.deal.SportyShoesPrototype.domain.Login;
 import com.vodafone.deal.SportyShoesPrototype.domain.Order;
 import com.vodafone.deal.SportyShoesPrototype.domain.Shoe;
 import com.vodafone.deal.SportyShoesPrototype.service.LoginService;
 import com.vodafone.deal.SportyShoesPrototype.service.OrderService;
 import com.vodafone.deal.SportyShoesPrototype.service.ShoeService;
-import com.vodafone.deal.SportyShoesPrototype.service.UserService;
+import com.vodafone.deal.SportyShoesPrototype.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -28,7 +25,7 @@ public class CustomerController {
     @Autowired
     private OrderService orderService;
     @Autowired
-    private UserService userService;
+    private PersonService personService;
     @Autowired
     private LoginService loginService;
 
@@ -36,7 +33,7 @@ public class CustomerController {
     public String index(Model model, @AuthenticationPrincipal User user) {
 
 
-        Integer userId = userService.getUserIdByEmail(user.getUsername());
+        Integer userId = personService.getPersonIdByEmail(user.getUsername());
         List<Order> orders = orderService.getOrdersByUserId(userId);
         model.addAttribute("orders", orders);
 

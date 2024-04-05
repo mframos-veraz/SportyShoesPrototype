@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "persons")
+public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class User {
     @JoinColumn(name = "userId")
     private List<Order> ordersList;
 
-    public User() {
+    public Person() {
     }
 
     public int getId() {

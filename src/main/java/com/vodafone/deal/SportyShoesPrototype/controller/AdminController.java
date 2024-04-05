@@ -1,23 +1,19 @@
 package com.vodafone.deal.SportyShoesPrototype.controller;
 
-import com.vodafone.deal.SportyShoesPrototype.domain.Shoe;
 import com.vodafone.deal.SportyShoesPrototype.service.ShoeService;
-import com.vodafone.deal.SportyShoesPrototype.service.UserService;
+import com.vodafone.deal.SportyShoesPrototype.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("admin")
 public class AdminController {
 
     @Autowired
-    private UserService userService;
+    private PersonService personService;
     @Autowired
     private ShoeService productService;
 
