@@ -16,25 +16,28 @@ public class Order {
     @Column(name = "purchase date")
     private LocalDateTime date;
 
+    public Order() {
+    }
+
+    public Order(int id, int productId, int userId, LocalDateTime date) {
+        this.id = id;
+        this.productId = productId;
+        this.userId = userId;
+        this.date = date;
+    }
+
     public Order(int productId, int userId, LocalDateTime date) {
         this.productId = productId;
         this.userId = userId;
         this.date = date;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public Order() {
-    }
-
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getProductId() {
@@ -43,6 +46,14 @@ public class Order {
 
     public void setProductId(int productId) {
         this.productId = productId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public LocalDateTime getDate() {

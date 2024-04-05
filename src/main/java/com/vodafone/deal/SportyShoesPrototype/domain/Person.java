@@ -1,6 +1,8 @@
 package com.vodafone.deal.SportyShoesPrototype.domain;
 
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -44,8 +46,12 @@ public class Person {
         return login;
     }
 
-    public void setLogin(Login email) {
-        this.login = email;
+    public void setLogin(Login login) {
+        this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.login.setPassword(password);
     }
 
     public List<Order> getOrdersList() {

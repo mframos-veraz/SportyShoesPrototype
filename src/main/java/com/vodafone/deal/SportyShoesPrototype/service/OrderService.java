@@ -28,30 +28,30 @@ public class OrderService {
             return "User does not exist";
         }
 
+        Optional<Shoe> productRecord = productRepository.findById(product.getId());
+        if (productRecord.isEmpty()) {
+            return "Product does not exist";
+        }
+
+        product = productRecord.get();
         if (product.getStock() > 0) {
-            Optional<Shoe> productRecord = productRepository.findById(product.getId());
-            if (productRecord.isPresent()) {
+            product.setStock(product.getStock() - 1);
+            productRepository.saveAndFlush(product);
 
-                Shoe shoe = productRecord.get();
-                shoe.setStock(shoe.getStock() - 1);
-                productRepository.saveAndFlush(shoe);
+            Order order = new Order(
+                    product.getId(),
+                    userId,
+                    LocalDateTime.now());
+            orderRepository.save(order);
 
-                Order order = new Order(
-                        product.getId(),
-                        userId,
-                        LocalDateTime.now());
-                orderRepository.save(order);
-
-                return "Order created";
-            }
-            return "No such product";
+            return "Order created";
         }
         return "No stock available";
     }
 
     public String deleteOrder(int id) {
-        Optional<Order> record = orderRepository.findById(id);
-        if (record.isPresent()) {
+        Optional<Order> orderRecord = orderRepository.findById(id);
+        if (orderRecord.isPresent()) {
             orderRepository.deleteById(id);
             return "Order deleted";
         }

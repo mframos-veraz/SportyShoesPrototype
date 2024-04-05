@@ -6,6 +6,9 @@
 </head>
 <body>
 <h1>Welcome to Sporty Shoes!</h1>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
 <div>
     <span th:text="${message}"></span>
     <form action="#" method="post" th:action="@{/customer/deleteOrder}" th:object="${order}">

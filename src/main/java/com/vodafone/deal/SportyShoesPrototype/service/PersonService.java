@@ -48,6 +48,9 @@ public class PersonService {
         if (record.isPresent()) {
             Person personRecord = record.get();
             personRecord.setFirstName(person.getFirstName());
+            personRecord.setLastName(person.getLastName());
+            person.setPassword(encoder.encode(person.getLogin().getPassword()));
+            personRecord.setLogin(person.getLogin());
             repository.saveAndFlush(personRecord);
             return "User edited";
         }

@@ -23,15 +23,17 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity security) throws Exception {
         security
+                .csrf(csrfConfigurer -> csrfConfigurer.disable())
                 .formLogin(form -> form
                         .loginPage("/login")
                         .successHandler(new SuccessHandler())
                         .permitAll()
                 )
                 .authorizeHttpRequests(authorization -> {
-                    authorization.requestMatchers("/login", "/logout", "/login/newUser").permitAll();
-                    authorization.requestMatchers("/customer").hasRole("USER");
-                    authorization.requestMatchers("/admin").hasRole("ADMIN");
+                    authorization.requestMatchers("/login/*", "/logout").permitAll();
+                    authorization.requestMatchers("/person/*").permitAll();
+                    authorization.requestMatchers("/customer", "/customer/*").hasRole("USER");
+                    authorization.requestMatchers("/admin", "/admin/*").hasRole("ADMIN");
                 })
         ;
         return security.build();

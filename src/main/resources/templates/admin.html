@@ -6,44 +6,59 @@
 </head>
 <body>
 <h1>Sporty Shoes Management</h1>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
 <div>
     <span th:text="${message}"></span>
-    <form action="#" method="post" th:action="@{/admin/createUser}" th:object="${person}">
-        <label>Name
-            <input name="name" th:field="*{firstName}" type="text">
+    <form action="#" method="post" th:action="@{/admin/createPerson}" th:object="${person}">
+        <label>First Name
+            <input name="firstName" th:field="*{firstName}" type="text">
         </label><br>
-        <label>Password
-            <input name="password" th:field="*{password}" type="password">
+        <label>Last Name
+            <input name="lastName" th:field="*{lastName}" type="text">
         </label><br>
         <label>Email
-            <input name="email" th:field="*{login}" type="email">
+            <input name="email" th:field="*{login.username}" type="email">
         </label><br>
-        <label>Type
-            <input name="type" th:field="*{type}" type="text">
+        <label>Password
+        <input name="password" th:field="*{login.password}" type="password">
+        </label><br>
+        <label>USER
+            <input name="USER" value="USER" th:field="*{login.role}" type="radio">
+        </label>
+        <label>ADMIN
+            <input name="ADMIN" value="ADMIN" th:field="*{login.role}" type="radio">
         </label><br>
         <input name="submitButton" value="Create new user" type="submit">
         <input name="reset" value="Reset" type="reset">
     </form>
-    <form action="#" method="post" th:action="@{/admin/editUser}" th:object="${person}">
+    <form action="#" method="post" th:action="@{/admin/editPerson}" th:object="${person}">
         <label>User ID
             <input name="userId" th:field="*{id}" type="number">
         </label><br>
-        <label>Name
-            <input name="name" th:field="*{firstName}" type="text">
+        <label>First Name
+            <input name="firstName" th:field="*{firstName}" type="text">
         </label><br>
-        <label>Password
-            <input name="password" th:field="*{password}" type="password">
+        <label>Last Name
+            <input name="lastName" th:field="*{lastName}" type="text">
         </label><br>
         <label>Email
-            <input name="email" th:field="*{login}" type="email">
+            <input name="email" th:field="*{login.username}" type="email">
         </label><br>
-        <label>Type
-            <input name="type" th:field="*{type}" type="text">
+        <label>Password
+            <input name="password" th:field="*{login.password}" type="password">
         </label><br>
-        <input name="submitButton" value="Modify person" type="submit">
+        <label>USER
+            <input name="USER" value="USER" th:field="*{login.role}" type="radio">
+        </label>
+        <label>ADMIN
+            <input name="ADMIN" value="ADMIN" th:field="*{login.role}" type="radio">
+        </label><br>
+        <input name="submitButton" value="Modify user" type="submit">
         <input name="reset" value="Reset" type="reset">
     </form>
-    <form action="#" method="post" th:action="@{/admin/deleteUser}" th:object="${person}">
+    <form action="#" method="post" th:action="@{/admin/deletePerson}" th:object="${person}">
         <label>User ID
             <input name="userId" th:field="*{id}" type="number">
         </label><br>
@@ -53,17 +68,19 @@
     <table>
         <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th>First name</th>
+            <th>Last name</th>
             <th>Email</th>
             <th>Password</th>
-            <th>Type</th>
+            <th>Role</th>
         </tr>
-        <tr th:each="person:${users}">
+        <tr th:each="person:${persons}">
             <td th:text="${person.id}"></td>
-            <td th:text="${person.name}"></td>
-            <td th:text="${person.email}"></td>
-            <td th:text="${person.password}"></td>
-            <td th:text="${person.type}"></td>
+            <td th:text="${person.firstName}"></td>
+            <td th:text="${person.lastName}"></td>
+            <td th:text="${person.login.username}"></td>
+            <td th:text="${person.login.password}"></td>
+            <td th:text="${person.login.role}"></td>
         </tr>
     </table>
 </div>
