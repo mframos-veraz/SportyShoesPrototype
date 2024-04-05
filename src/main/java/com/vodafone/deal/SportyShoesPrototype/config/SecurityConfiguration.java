@@ -29,7 +29,7 @@ public class SecurityConfiguration {
                         .permitAll()
                 )
                 .authorizeHttpRequests(authorization -> {
-                    authorization.requestMatchers("/login", "/logout").permitAll();
+                    authorization.requestMatchers("/login", "/logout", "/login/newUser").permitAll();
                     authorization.requestMatchers("/customer").hasRole("USER");
                     authorization.requestMatchers("/admin").hasRole("ADMIN");
                 })

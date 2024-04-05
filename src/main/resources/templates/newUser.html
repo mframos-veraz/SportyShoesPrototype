@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>New User</title>
@@ -7,18 +7,18 @@
 <body>
 <h1>Create a new user!</h1>
 <div>
-    <form action="#" method="post" th:action="@{/login/newUser}" th:object="${person}">
+    <form th:action="@{/login/newUser}" th:object="${person}" method="post">
         <label>First Name
-            <input name="name" th:field="*{firstName}" type="text">
+            <input name="name" th:field="*{firstName}" type="text" placeholder="First name">
         </label><br>
         <label>Last Name
-            <input name="name" th:field="*{lastName}" type="text">
+            <input name="name" th:field="*{lastName}" type="text" placeholder="Last name">
         </label><br>
         <label>Email
-            <input name="email" th:field="*{login.username}" type="email">
+            <input name="email" th:field="*{login.username}" type="email" placeholder="Email">
         </label><br>
         <label>Password
-            <input name="password" th:field="*{login.password}" type="password">
+            <input name="password" th:field="*{login.password}" type="password" placeholder="Password">
         </label><br>
         <input name="createNewUser" value="Register" type="submit">
     </form>

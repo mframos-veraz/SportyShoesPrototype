@@ -17,15 +17,15 @@ public class AdminController {
     @Autowired
     private ShoeService productService;
 
-    @GetMapping
-    public String index(Model model, ) {
-
-        model.addAttribute("product", shoe);
-        model.addAttribute("user", user);
-        model.addAttribute("users", users);
-        model.addAttribute("products", products);
-        return "admin";
-    }
+//    @GetMapping
+//    public String index(Model model, ) {
+//
+//        model.addAttribute("product", shoe);
+//        model.addAttribute("user", user);
+//        model.addAttribute("users", users);
+//        model.addAttribute("products", products);
+//        return "admin";
+//    }
 
 //    @PostMapping("createUser")
 //    public String createUser(Model model, User user) {
