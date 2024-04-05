@@ -107,7 +107,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": 10,\n    \"name\": \"4888\",\n    \"price\": 31,\n    \"stock\": 3,\n    \"size\": 41.5,\n    \"material\": \"synthetic\",\n    \"description\": \"Breathable and light\"\n}",
+							"raw": "{\n    \"id\": 4,\n    \"name\": \"runners\",\n    \"price\": 38.55,\n    \"stock\": 3,\n    \"size\": 41.5,\n    \"material\": \"synthetic\",\n    \"description\": \"Breathable and light\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -158,7 +158,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/{{product}}/delete?id=5",
+							"raw": "{{base_url}}/{{product}}/delete?id=4",
 							"host": [
 								"{{base_url}}"
 							],
@@ -169,7 +169,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "5"
+									"value": "4"
 								}
 							]
 						},
@@ -180,10 +180,10 @@
 			]
 		},
 		{
-			"name": "User REST API",
+			"name": "Person REST API",
 			"item": [
 				{
-					"name": "List users",
+					"name": "List person",
 					"event": [
 						{
 							"listen": "test",
@@ -202,12 +202,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/{{user}}/list",
+							"raw": "{{base_url}}/{{person}}/list",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"{{user}}",
+								"{{person}}",
 								"list"
 							]
 						},
@@ -216,15 +216,12 @@
 					"response": []
 				},
 				{
-					"name": "Create user",
+					"name": "Create person",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Successful POST request\", function () {",
-									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
-									"});",
 									""
 								],
 								"type": "text/javascript",
@@ -237,7 +234,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"anenua\",\n    \"email\": \"email@email.com\",\n    \"password\": \"password\",\n    \"type\": \"normal\"\n}",
+							"raw": "{\n    \"firstName\": \"admin\",\n    \"lastName\": \"admin\",\n    \"login\": {\n        \"username\": \"a@a.pt\",\n        \"password\": \"123\",\n        \"role\": \"ADMIN\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -245,12 +242,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/{{user}}/new",
+							"raw": "{{base_url}}/{{person}}/new",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"{{user}}",
+								"{{person}}",
 								"new"
 							]
 						},
@@ -410,7 +407,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"productId\": 2\n}",
+							"raw": "{\n    \"productId\": 3,\n    \"date\": \"2024-04-05T21:31:51.783363\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -418,13 +415,19 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/{{order}}/new",
+							"raw": "{{base_url}}/{{order}}/new?userId=2",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"{{order}}",
 								"new"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "2"
+								}
 							]
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
@@ -524,6 +527,179 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Login REST API",
+			"item": [
+				{
+					"name": "List logins",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{login}}/list",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{login}}",
+								"list"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Create login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"a@a.pt\",\n    \"password\": \"123\",\n    \"role\": \"ADMIN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{login}}/new",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{login}}",
+								"new"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Edit login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"username\": \"b@a.pt\",\n    \"password\": \"$2a$10$5aYCcBJF1OhvxV3jbYDOEu.H/LWIB12pKkPFDm69CR1tB/LHD5Y2a\",\n    \"role\": \"ADMIN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{login}}/edit",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{login}}",
+								"edit"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{login}}/delete?id=2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{login}}",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -560,13 +736,18 @@
 			"type": "string"
 		},
 		{
-			"key": "user",
-			"value": "user",
+			"key": "person",
+			"value": "person",
 			"type": "string"
 		},
 		{
 			"key": "order",
 			"value": "order",
+			"type": "string"
+		},
+		{
+			"key": "login",
+			"value": "logins",
 			"type": "string"
 		}
 	]
