@@ -3,163 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <title>Sporty Shoes Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-<h1>Sporty Shoes Management</h1>
-<form th:action="@{/logout}" method="post">
-    <button type="submit">Logout</button>
-</form>
-<div>
+<div class="container mt-3">
+    <h1>Sporty Shoes Management</h1>
+    <div class="d-flex justify-content-start">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-primary">Logout</button>
+        </form>
+        <a href="#" th:href="@{/admin/person}" class="btn btn-secondary mx-2">Manage persons</a>
+        <a href="#" th:href="@{/admin/product}" class="btn btn-secondary">Manage products</a>
+    </div>
     <span th:text="${message}"></span>
-    <form action="#" method="post" th:action="@{/admin/createPerson}" th:object="${person}">
-        <label>First Name
-            <input name="firstName" th:field="*{firstName}" type="text">
-        </label><br>
-        <label>Last Name
-            <input name="lastName" th:field="*{lastName}" type="text">
-        </label><br>
-        <label>Email
-            <input name="email" th:field="*{login.username}" type="email">
-        </label><br>
-        <label>Password
-        <input name="password" th:field="*{login.password}" type="password">
-        </label><br>
-        <label>USER
-            <input name="USER" value="USER" th:field="*{login.role}" type="radio">
-        </label>
-        <label>ADMIN
-            <input name="ADMIN" value="ADMIN" th:field="*{login.role}" type="radio">
-        </label><br>
-        <input name="submitButton" value="Create new user" type="submit">
-        <input name="reset" value="Reset" type="reset">
-    </form>
-    <form action="#" method="post" th:action="@{/admin/editPerson}" th:object="${person}">
-        <label>User ID
-            <input name="userId" th:field="*{id}" type="number">
-        </label><br>
-        <label>First Name
-            <input name="firstName" th:field="*{firstName}" type="text">
-        </label><br>
-        <label>Last Name
-            <input name="lastName" th:field="*{lastName}" type="text">
-        </label><br>
-        <label>Email
-            <input name="email" th:field="*{login.username}" type="email">
-        </label><br>
-        <label>Password
-            <input name="password" th:field="*{login.password}" type="password">
-        </label><br>
-        <label>USER
-            <input name="USER" value="USER" th:field="*{login.role}" type="radio">
-        </label>
-        <label>ADMIN
-            <input name="ADMIN" value="ADMIN" th:field="*{login.role}" type="radio">
-        </label><br>
-        <input name="submitButton" value="Modify user" type="submit">
-        <input name="reset" value="Reset" type="reset">
-    </form>
-    <form action="#" method="post" th:action="@{/admin/deletePerson}" th:object="${person}">
-        <label>User ID
-            <input name="userId" th:field="*{id}" type="number">
-        </label><br>
-        <input name="submitButton" value="Delete user" type="submit">
-        <input name="reset" value="Reset" type="reset">
-    </form>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Role</th>
-        </tr>
-        <tr th:each="person:${persons}">
-            <td th:text="${person.id}"></td>
-            <td th:text="${person.firstName}"></td>
-            <td th:text="${person.lastName}"></td>
-            <td th:text="${person.login.username}"></td>
-            <td th:text="${person.login.password}"></td>
-            <td th:text="${person.login.role}"></td>
-        </tr>
-    </table>
-</div>
-<hr/>
-<div>
-    <form action="#" method="post" th:action="@{/admin/createProduct}" th:object="${product}">
-        <label>Name
-            <input name="name" th:field="*{name}" type="text">
-        </label><br>
-        <label>Price
-            <input name="price" th:field="*{price}" type="number">
-        </label><br>
-        <label>Stock
-            <input name="stock" th:field="*{stock}" type="text">
-        </label><br>
-        <label>Size
-            <input name="size" th:field="*{size}" type="number">
-        </label><br>
-        <label>Material
-            <input name="material" th:field="*{material}" type="text">
-        </label><br>
-        <label>Description
-            <input name="description" th:field="*{description}" type="text">
-        </label><br>
-        <input name="submitButton" value="Create new product" type="submit">
-        <input name="reset" value="Reset" type="reset">
-    </form>
-    <form action="#" method="post" th:action="@{/admin/editProduct}" th:object="${product}">
-        <label>Product ID
-            <input name="productId" th:field="*{id}" type="number">
-        </label><br>
-        <label>Name
-            <input name="name" th:field="*{name}" type="text">
-        </label><br>
-        <label>Price
-            <input name="price" th:field="*{price}" type="number">
-        </label><br>
-        <label>Stock
-            <input name="stock" th:field="*{stock}" type="text">
-        </label><br>
-        <label>Size
-            <input name="size" th:field="*{size}" type="number">
-        </label><br>
-        <label>Material
-            <input name="material" th:field="*{material}" type="text">
-        </label><br>
-        <label>Description
-            <input name="description" th:field="*{description}" type="text">
-        </label><br>
-        <input name="submitButton" value="Modify product" type="submit">
-        <input name="reset" value="Reset" type="reset">
-    </form>
-    <form action="#" method="post" th:action="@{/admin/deleteProduct}" th:object="${person}">
-        <label>Product ID
-            <input name="productId" th:field="*{id}" type="number">
-        </label><br>
-        <input name="submitButton" value="Delete product" type="submit">
-        <input name="reset" value="Reset" type="reset">
-    </form>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Stock</th>
-            <th>Size</th>
-            <th>Material</th>
-            <th>Description</th>
-        </tr>
-        <tr th:each="shoe:${products}">
-            <td th:text="${shoe.id}"></td>
-            <td th:text="${shoe.name}"></td>
-            <td th:text="${shoe.price}"></td>
-            <td th:text="${shoe.stock}"></td>
-            <td th:text="${shoe.size}"></td>
-            <td th:text="${shoe.material}"></td>
-            <td th:text="${shoe.description}"></td>
-        </tr>
-    </table>
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Role</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="person:${persons}">
+                <td th:text="${person.id}"></td>
+                <td th:text="${person.firstName}"></td>
+                <td th:text="${person.lastName}"></td>
+                <td th:text="${person.login.username}"></td>
+                <td th:text="${person.login.password}"></td>
+                <td th:text="${person.login.role}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Size</th>
+                <th>Material</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="shoe:${products}">
+                <td th:text="${shoe.id}"></td>
+                <td th:text="${shoe.name}"></td>
+                <td th:text="${shoe.price}"></td>
+                <td th:text="${shoe.stock}"></td>
+                <td th:text="${shoe.size}"></td>
+                <td th:text="${shoe.material}"></td>
+                <td th:text="${shoe.description}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>
